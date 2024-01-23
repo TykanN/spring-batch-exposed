@@ -7,15 +7,24 @@ plugins {
 
 
 allprojects{
+    group = "dev.tykan"
+    version = "1.0.5"
+    
     repositories {
         mavenCentral()
     }
 }
 
+tasks {
+    jar {
+        enabled = true
+    }
+    bootJar {
+        enabled = false
+    }
+}
+
 subprojects {
-    group = "dev.tykan"
-    version = "1.0.4"
-    
     apply(plugin = "kotlin")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
@@ -32,8 +41,14 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework.batch:spring-batch-test")
     }
-    
+
     tasks {
+        jar {
+            enabled = true
+        }
+        bootJar {
+            enabled = false
+        }
         compileKotlin {
             kotlinOptions {
                 freeCompilerArgs = listOf("-Xjsr305=strict")
@@ -53,6 +68,8 @@ subprojects {
 }
 
 project("spring-batch-exposed-reader") {
+ 
+    
     dependencies {
     
     }
