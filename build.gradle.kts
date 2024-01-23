@@ -7,9 +7,15 @@ plugins {
     id("maven-publish")
 }
 
+tasks {
+    bootJar {
+        enabled = false
+    }
+}
+
 allprojects{
     group = "dev.tykan"
-    version = "1.0.11"
+    version = "1.0.12"
     
     repositories {
         mavenCentral()
@@ -66,12 +72,9 @@ subprojects {
             }
         }
     }
-    
-   
 }
 
 project("spring-batch-exposed-reader") {
- 
     
     dependencies {
     
@@ -95,10 +98,10 @@ project("spring-batch-exposed-reader") {
             }
         }
         
-        repositories {
-            maven {
-                // Nexus 관련 정보
-            }
-        }
+//        repositories {
+//            maven {
+//                // Nexus 관련 정보
+//            }
+//        }
     }
 }
