@@ -1,10 +1,8 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.9.22"
 	id("org.springframework.boot") version "3.2.0"
 	id("io.spring.dependency-management") version "1.1.4"
-	id("maven-publish")
 }
 
 dependencies {
@@ -48,30 +46,4 @@ tasks {
 			jvmTarget = "17"
 		}
 	}
-}
-
-publishing {
-	publications {
-		create<MavenPublication>("mavenJava") {
-			groupId = project.group as String
-			artifactId = project.name
-			version = project.version as String
-			from(components["java"])
-			
-			versionMapping {
-				usage("java-api") {
-					fromResolutionOf("runtimeClasspath")
-				}
-				usage("java-runtime") {
-					fromResolutionResult()
-				}
-			}
-		}
-	}
-
-//        repositories {
-//            maven {
-//                // Nexus 관련 정보
-//            }
-//        }
 }
