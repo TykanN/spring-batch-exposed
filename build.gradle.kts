@@ -12,7 +12,7 @@ publishing {
 
 allprojects{
     group = "dev.tykan"
-    version = "1.0.6"
+    version = "1.0.7"
     
     repositories {
         mavenCentral()
@@ -26,6 +26,27 @@ tasks {
     }
     bootJar {
         enabled = false
+    }
+}
+
+dependencies {
+    project(":spring-batch-exposed-reader")
+}
+
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "dev.tykan"
+            artifactId = "spring-batch-exposed"
+            from(components["java"])
+        }
+    }
+    
+    repositories {
+        maven {
+            // Nexus 관련 정보
+        }
     }
 }
 
@@ -79,5 +100,21 @@ project("spring-batch-exposed-reader") {
     
     dependencies {
     
+    }
+    
+    publishing {
+        publications {
+            create<MavenPublication>("mavenJava") {
+                groupId = "dev.tykan"
+                artifactId = "spring-batch-exposed-reader"
+                from(components["java"])
+            }
+        }
+        
+        repositories {
+            maven {
+                // Nexus 관련 정보
+            }
+        }
     }
 }
