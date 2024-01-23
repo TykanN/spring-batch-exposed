@@ -7,45 +7,13 @@ plugins {
     id("maven-publish")
 }
 
-
 allprojects{
     group = "dev.tykan"
-    version = "1.0.10"
+    version = "1.0.11"
     
     repositories {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
-    }
-}
-
-
-dependencies {
-    implementation(project(":spring-batch-exposed-reader"))
-}
-
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = "dev.tykan"
-            artifactId = "spring-batch-exposed"
-            from(components["java"])
-            
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
-        }
-    }
-    
-    repositories {
-        maven {
-            // Nexus 관련 정보
-        }
     }
 }
 
