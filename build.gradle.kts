@@ -9,7 +9,7 @@ plugins {
 
 allprojects{
     group = "dev.tykan"
-    version = "1.0.8"
+    version = "1.0.9"
     
     repositories {
         mavenCentral()
@@ -20,7 +20,7 @@ allprojects{
 
 dependencies {
     project(":spring-batch-exposed-reader")
-}:
+}
 
 subprojects {
     apply(plugin = "kotlin")
