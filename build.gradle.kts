@@ -5,13 +5,18 @@ plugins {
     id("maven-publish")
 }
 
+publishing {
+    publications {
+    }
+}
 
 allprojects{
     group = "dev.tykan"
-    version = "1.0.5"
+    version = "1.0.6"
     
     repositories {
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
@@ -65,6 +70,8 @@ subprojects {
             }
         }
     }
+    
+   
 }
 
 project("spring-batch-exposed-reader") {

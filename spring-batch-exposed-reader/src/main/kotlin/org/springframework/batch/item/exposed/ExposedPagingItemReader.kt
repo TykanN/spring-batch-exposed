@@ -1,6 +1,5 @@
 package org.springframework.batch.item.exposed
 
-
 import org.jetbrains.exposed.dao.flushCache
 import org.jetbrains.exposed.sql.Query
 import org.jetbrains.exposed.sql.ResultRow
