@@ -1,7 +1,7 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-	id("org.springframework.boot") version "3.2.0"
+	id("org.springframework.boot") version "3.2.0" apply false
 	id("io.spring.dependency-management") version "1.1.4"
 }
 
@@ -24,12 +24,6 @@ dependencyManagement {
 }
 
 tasks {
-	jar {
-		enabled = true
-	}
-	bootJar {
-		enabled = false
-	}
 	compileKotlin {
 		kotlinOptions {
 			freeCompilerArgs = listOf("-Xjsr305=strict")
