@@ -3,9 +3,13 @@ plugins {
     id("maven-publish")
 }
 
+dependencies{
+    project(":spring-batch-exposed-reader")
+}
+
 allprojects {
     group = "dev.tykan"
-    version = "1.0.15"
+    version = "1.0.16"
     
     repositories {
         mavenCentral()
