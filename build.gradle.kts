@@ -15,7 +15,7 @@ tasks {
 
 allprojects{
     group = "dev.tykan"
-    version = "1.0.12"
+    version = "1.0.13"
     
     repositories {
         mavenCentral()
@@ -74,7 +74,7 @@ subprojects {
     }
 }
 
-project("spring-batch-exposed-reader") {
+project(":spring-batch-exposed-reader") {
     
     dependencies {
     
@@ -83,8 +83,9 @@ project("spring-batch-exposed-reader") {
     publishing {
         publications {
             create<MavenPublication>("mavenJava") {
-                groupId = "dev.tykan"
-                artifactId = "spring-batch-exposed-reader"
+                groupId = project.group as String
+                artifactId = project.name
+                version = project.version as String
                 from(components["java"])
                 
                 versionMapping {
