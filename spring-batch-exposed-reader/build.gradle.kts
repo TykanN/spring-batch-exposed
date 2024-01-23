@@ -41,8 +41,8 @@ tasks {
 publishing{
 	publications {
 		create<MavenPublication>("maven") {
-			groupId = project.group as String
-			artifactId = project.name
+			groupId = "dev.tykan"
+			artifactId = "spring-batch-exposed-reader"
 			version = project.version as String
 			
 			from(components["java"])
