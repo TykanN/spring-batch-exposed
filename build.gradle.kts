@@ -7,9 +7,10 @@ plugins {
     id("maven-publish")
 }
 
+
 allprojects{
     group = "dev.tykan"
-    version = "1.0.9"
+    version = "1.0.10"
     
     repositories {
         mavenCentral()
@@ -19,7 +20,33 @@ allprojects{
 
 
 dependencies {
-    project(":spring-batch-exposed-reader")
+    implementation(project(":spring-batch-exposed-reader"))
+}
+
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "dev.tykan"
+            artifactId = "spring-batch-exposed"
+            from(components["java"])
+            
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+    
+    repositories {
+        maven {
+            // Nexus 관련 정보
+        }
+    }
 }
 
 subprojects {
@@ -39,6 +66,7 @@ subprojects {
         implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework.batch:spring-batch-test")
+        
     }
     
     dependencyManagement {
@@ -87,6 +115,15 @@ project("spring-batch-exposed-reader") {
                 groupId = "dev.tykan"
                 artifactId = "spring-batch-exposed-reader"
                 from(components["java"])
+                
+                versionMapping {
+                    usage("java-api") {
+                        fromResolutionOf("runtimeClasspath")
+                    }
+                    usage("java-runtime") {
+                        fromResolutionResult()
+                    }
+                }
             }
         }
         
