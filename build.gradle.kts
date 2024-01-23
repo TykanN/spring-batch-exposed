@@ -4,12 +4,12 @@ plugins {
 }
 
 dependencies{
-    project(":spring-batch-exposed-reader")
+    implementation(project(":spring-batch-exposed-reader"))
 }
 
 allprojects {
     group = "dev.tykan"
-    version = "1.0.16"
+    version = "1.0.17"
     
     repositories {
         mavenCentral()
@@ -19,15 +19,4 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "maven-publish")
-    
-    publishing{
-        publications {
-            create<MavenPublication>("mavenJava") {
-                groupId = project.group as String
-                artifactId = project.name
-                version = project.version as String
-                from(components["java"])
-            }
-        }
-    }
 }

@@ -15,14 +15,13 @@ dependencies {
 	implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.batch:spring-batch-test")
-	
 }
 
-dependencyManagement {
-	imports {
-		mavenBom(SpringBootPlugin.BOM_COORDINATES)
-	}
-}
+//dependencyManagement {
+//	imports {
+//		mavenBom(SpringBootPlugin.BOM_COORDINATES)
+//	}
+//}
 
 tasks {
 	jar {
