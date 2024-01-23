@@ -21,7 +21,7 @@ publishing {
 
 allprojects {
     group = "dev.tykan"
-    version = "1.0.19"
+    version = "1.0.20"
     
     repositories {
         mavenCentral()

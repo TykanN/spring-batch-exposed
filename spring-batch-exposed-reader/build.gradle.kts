@@ -17,11 +17,11 @@ dependencies {
 	testImplementation("org.springframework.batch:spring-batch-test")
 }
 
-//dependencyManagement {
-//	imports {
-//		mavenBom(SpringBootPlugin.BOM_COORDINATES)
-//	}
-//}
+dependencyManagement {
+	imports {
+		mavenBom(SpringBootPlugin.BOM_COORDINATES)
+	}
+}
 
 tasks {
 	jar {
