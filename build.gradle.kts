@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.9.22"
     id("org.springframework.boot") version "3.2.0"
@@ -5,14 +7,9 @@ plugins {
     id("maven-publish")
 }
 
-publishing {
-    publications {
-    }
-}
-
 allprojects{
     group = "dev.tykan"
-    version = "1.0.7"
+    version = "1.0.8"
     
     repositories {
         mavenCentral()
@@ -20,35 +17,10 @@ allprojects{
     }
 }
 
-tasks {
-    jar {
-        enabled = true
-    }
-    bootJar {
-        enabled = false
-    }
-}
 
 dependencies {
     project(":spring-batch-exposed-reader")
-}
-
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = "dev.tykan"
-            artifactId = "spring-batch-exposed"
-            from(components["java"])
-        }
-    }
-    
-    repositories {
-        maven {
-            // Nexus 관련 정보
-        }
-    }
-}
+}:
 
 subprojects {
     apply(plugin = "kotlin")
@@ -56,6 +28,7 @@ subprojects {
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "maven-publish")
     
+ 
     dependencies {
         val exposedVersion = "0.44.1"
         implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -66,6 +39,12 @@ subprojects {
         implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.springframework.batch:spring-batch-test")
+    }
+    
+    dependencyManagement {
+        imports {
+            mavenBom(SpringBootPlugin.BOM_COORDINATES)
+        }
     }
 
     tasks {
