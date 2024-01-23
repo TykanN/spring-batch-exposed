@@ -14,11 +14,12 @@ allprojects{
 
 subprojects {
     group = "dev.tykan"
-    version = "1.0.3"
+    version = "1.0.4"
     
     apply(plugin = "kotlin")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "maven-publish")
     
     dependencies {
         val exposedVersion = "0.44.1"
@@ -36,7 +37,7 @@ subprojects {
         compileKotlin {
             kotlinOptions {
                 freeCompilerArgs = listOf("-Xjsr305=strict")
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
             dependsOn(processResources) // kotlin 에서 ConfigurationProperties
         }
@@ -45,7 +46,7 @@ subprojects {
         compileTestKotlin {
             kotlinOptions {
                 freeCompilerArgs = listOf("-Xjsr305=strict")
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
