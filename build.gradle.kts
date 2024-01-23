@@ -1,15 +1,12 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.9.22"
+    java
+    kotlin("jvm") version "1.9.22"
     id("maven-publish")
-}
-
-dependencies{
-    implementation(project(":spring-batch-exposed-reader"))
 }
 
 allprojects {
     group = "dev.tykan"
-    version = "1.0.17"
+    version = "1.0.18"
     
     repositories {
         mavenCentral()
@@ -17,6 +14,19 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "maven-publish")
+    
+    publishing{
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group as String
+                artifactId = project.name
+                version = project.version as String
+                
+                from(components["java"])
+            }
+        }
+    }
 }
