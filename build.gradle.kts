@@ -1,30 +1,12 @@
 plugins {
-    java
     kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22"
-    kotlin("kapt") version "1.9.22"
+    kotlin("plugin.spring") version "1.9.22" apply false
     id("maven-publish")
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = "dev.tykan"
-            artifactId = "spring-batch-exposed"
-            version = project.version as String
-            from(components["java"])
-        }
-    }
-    
-    repositories {
-        maven {
-        }
-    }
 }
 
 allprojects {
     group = "dev.tykan"
-    version = "1.1.0"
+    version = "1.1.1"
     
     repositories {
         mavenCentral()
@@ -32,9 +14,28 @@ allprojects {
 }
 
 subprojects {
-    apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-    apply(plugin = "org.jetbrains.kotlin.kapt")
     apply(plugin = "maven-publish")
+    
+    tasks {
+        compileKotlin {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "17"
+            }
+        }
+    }
+    
+    publishing{
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group as String
+                artifactId = project.name
+                version = project.version as String
+                
+                from(components["java"])
+            }
+        }
+    }
 }

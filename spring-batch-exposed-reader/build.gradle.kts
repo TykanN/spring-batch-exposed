@@ -1,12 +1,13 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
+val exposedVersion = "0.46.0"
+
 plugins {
 	id("org.springframework.boot") version "3.2.0" apply false
 	id("io.spring.dependency-management") version "1.1.4"
 }
 
 dependencies {
-	val exposedVersion = "0.44.1"
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -20,31 +21,5 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom(SpringBootPlugin.BOM_COORDINATES)
-	}
-}
-
-tasks {
-	compileKotlin {
-		kotlinOptions {
-			freeCompilerArgs = listOf("-Xjsr305=strict")
-			jvmTarget = "17"
-		}
-	}
-}
-
-publishing{
-	publications {
-		create<MavenPublication>("maven") {
-			groupId = "dev.tykan"
-			artifactId = "spring-batch-exposed-reader"
-			version = project.version as String
-			
-			from(components["java"])
-		}
-	}
-	
-	repositories {
-		maven {
-		}
 	}
 }
