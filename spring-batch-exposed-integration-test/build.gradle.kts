@@ -1,4 +1,4 @@
-val exposedVersion = "0.44.1"
+val exposedVersion = "0.46.0"
 
 plugins {
     id("org.springframework.boot") version "3.2.0"

@@ -33,13 +33,13 @@ class ExposedNoOffsetIdLongOptions<T : Comparable<T>>(
 		
 		currentId = if (isGroupByQuery) {
 			clone
-				.adjustSlice { slice(order.first) }
+				.adjustSelect { select(order.first) }
 				.orderBy(order)
 				.firstOrNull()?.get(order.first)
 		} else {
 			val exp = if (order.second == SortOrder.ASC) order.first.min() else order.first.max()
 			clone
-				.adjustSlice { slice(exp) }
+				.adjustSelect { select(exp) }
 				.firstOrNull()?.get(exp)
 		}
 	}
@@ -50,13 +50,13 @@ class ExposedNoOffsetIdLongOptions<T : Comparable<T>>(
 		
 		lastId = if (isGroupByQuery) {
 			clone
-				.adjustSlice { slice(order.first) }
+				.adjustSelect { select(order.first) }
 				.orderBy(order.first to if (order.second == SortOrder.ASC) SortOrder.DESC else SortOrder.ASC)
 				.firstOrNull()?.get(order.first)
 		} else {
 			val exp = if (order.second == SortOrder.ASC) order.first.max() else order.first.min()
 			clone
-				.adjustSlice { slice(exp) }
+				.adjustSelect { select(exp) }
 				.firstOrNull()?.get(exp)
 		}
 	}
